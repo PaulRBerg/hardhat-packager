@@ -1,0 +1,67 @@
+{
+  "name": "hardhat-packager",
+  "description": "Hardhat plugin for preparing the contract artifacts and the TypeChain bindings for registry deployment",
+  "version": "1.0.0",
+  "author": {
+    "name": "Paul Razvan Berg",
+    "url": "https://paulrberg.com"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^13.1.0",
+    "@commitlint/config-conventional": "^13.1.0",
+    "@typechain/ethers-v5": "^7.0.1",
+    "@typechain/hardhat": "^2.2.0",
+    "@types/fs-extra": "^9.0.12",
+    "@types/mocha": "^9.0.0",
+    "@types/node": "^16.4.10",
+    "@typescript-eslint/eslint-plugin": "^4.28.5",
+    "@typescript-eslint/parser": "^4.28.5",
+    "commitizen": "^4.2.4",
+    "cz-conventional-changelog": "^3.3.0",
+    "earljs": "^0.1.10",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "fs-extra": "^10.0.0",
+    "hardhat": "^2.5.0",
+    "husky": "^7.0.1",
+    "lint-staged": "^11.1.1",
+    "lodash": "^4.17.21",
+    "mocha": "^9.0.3",
+    "pinst": "^2.1.6",
+    "prettier": "^2.3.2",
+    "shx": "^0.3.3",
+    "tempy": "^1.0.1",
+    "ts-node": "^10.1.0",
+    "typechain": "^5.1.2",
+    "typescript": "~4.2.4"
+  },
+  "files": [
+    "/dist"
+  ],
+  "license": "WTFPL",
+  "main": "./dist/index.js",
+  "peerDependencies": {
+    "@typechain/hardhat": "^2.1.0",
+    "hardhat": "^2.0.10",
+    "lodash": "^4.17.15",
+    "typechain": "^5.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsc",
+    "clean": "shx rm -rf ./dist tsconfig.build.tsbuildinfo",
+    "commit": "git-cz",
+    "lint": "yarn run lint:ts && yarn run prettier:check",
+    "lint:ts": "eslint --config ./.eslintrc.yaml --ignore-path ./.eslintignore --ext .js,.ts .",
+    "postinstall": "husky install",
+    "postpublish": "pinst --enable",
+    "prepublishOnly": "pinst --disable",
+    "prettier": "prettier --config ./.prettierrc --write \"**/*.{js,json,md,ts}\"",
+    "prettier:check": "prettier --check --config ./.prettierrc \"**/*.{js,json,md,ts}\"",
+    "test": "mocha --config ./.mocharc.js",
+    "typecheck": "tsc --incremental false --noEmit"
+  },
+  "types": "./types/index.d.ts"
+}
