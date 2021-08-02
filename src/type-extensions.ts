@@ -1,4 +1,3 @@
-// If your plugin extends types from another plugin, you should import the plugin here.
 import "@typechain/hardhat";
 import "hardhat/types/config";
 

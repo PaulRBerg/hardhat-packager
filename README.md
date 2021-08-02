@@ -13,13 +13,13 @@ specifically, it deletes all artifacts and bindings that are not in an allowlist
 First, install the plugin and its peer dependencies. If you are using Ethers or Waffle, run:
 
 ```sh
-yarn add --dev hardhat-packager @typechain/hardhat @typechain/ethers-v5
+yarn add --dev hardhat-packager typechain @typechain/hardhat @typechain/ethers-v5
 ```
 
 Or if you are using Truffle, run:
 
 ```sh
-yarn add --dev hardhat-packager @typechain/hardhat @typechain/truffle-v5
+yarn add --dev hardhat-packager typechain @typechain/hardhat @typechain/truffle-v5
 ```
 
 Second, import the plugin in your `hardhat.config.js`:
@@ -83,7 +83,7 @@ Go look what you have in the `artifacts` and the `typechain` folders.
   [files](https://docs.npmjs.com/cli/v7/configuring-npm/package-json#files) field in your `package.json` file.
 - You may want to blocklist some files, such as test contracts, which you can do with an
   [.npmignore](https://docs.npmjs.com/cli/v7/using-npm/developers#keeping-files-out-of-your-package) file.
-- See how the plugin is integrated in my [solidity-template](https://github.com/paulrberg/solidity-template).
+- See how the plugin is integrated in [hifi-protocol](https://github.com/hifi-finance/hifi-protocol).
 
 ## License
 

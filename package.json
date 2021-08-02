@@ -6,6 +6,12 @@
     "name": "Paul Razvan Berg",
     "url": "https://paulrberg.com"
   },
+  "dependencies": {
+    "@typechain/hardhat": "^2.2.0",
+    "fs-extra": "^10.0.0",
+    "hardhat": "^2.5.0",
+    "tempy": "^1.0.1"
+  },
   "devDependencies": {
     "@commitlint/cli": "^13.1.0",
     "@commitlint/config-conventional": "^13.1.0",
@@ -21,8 +27,6 @@
     "earljs": "^0.1.10",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
-    "fs-extra": "^10.0.0",
-    "hardhat": "^2.5.0",
     "husky": "^7.0.1",
     "lint-staged": "^11.1.1",
     "lodash": "^4.17.21",
@@ -30,7 +34,6 @@
     "pinst": "^2.1.6",
     "prettier": "^2.3.2",
     "shx": "^0.3.3",
-    "tempy": "^1.0.1",
     "ts-node": "^10.1.0",
     "typechain": "^5.1.2",
     "typescript": "~4.2.4"
@@ -41,7 +44,7 @@
   "license": "WTFPL",
   "main": "./dist/index.js",
   "peerDependencies": {
-    "@typechain/hardhat": "^2.1.0",
+    "@typechain/hardhat": "^2.2.0",
     "hardhat": "^2.0.10",
     "lodash": "^4.17.15",
     "typechain": "^5.0.0"
@@ -50,7 +53,7 @@
     "access": "public"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "tsc --project ./tsconfig.prod.json",
     "clean": "shx rm -rf ./dist tsconfig.build.tsbuildinfo",
     "commit": "git-cz",
     "lint": "yarn run lint:ts && yarn run prettier:check && yarn run typecheck",

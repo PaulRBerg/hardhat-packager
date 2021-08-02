@@ -1,5 +1,3 @@
-import "@typechain/hardhat";
-
 import "./type-extensions";
 
 import path from "path";
@@ -11,8 +9,12 @@ import { HardhatPluginError } from "hardhat/plugins";
 import { Artifact, HardhatConfig, HardhatUserConfig, TaskArguments } from "hardhat/types";
 import tempy from "tempy";
 
-import packageJson from "../package.json";
-import { TASK_PREPARE_PACKAGE, TASK_PREPARE_PACKAGE_ARTIFACTS, TASK_PREPARE_PACKAGE_TYPECHAIN } from "./constants";
+import {
+  PLUGIN_NAME,
+  TASK_PREPARE_PACKAGE,
+  TASK_PREPARE_PACKAGE_ARTIFACTS,
+  TASK_PREPARE_PACKAGE_TYPECHAIN,
+} from "./constants";
 import { PackagerConfig } from "./types";
 
 extendConfig(function (config: HardhatConfig, userConfig: Readonly<HardhatUserConfig>) {
@@ -28,7 +30,7 @@ extendConfig(function (config: HardhatConfig, userConfig: Readonly<HardhatUserCo
 
 subtask(TASK_PREPARE_PACKAGE_ARTIFACTS).setAction(async function (_taskArgs: TaskArguments, { artifacts, config }) {
   if (!fsExtra.existsSync(config.paths.artifacts)) {
-    throw new HardhatPluginError(packageJson.name, "Please generate the contract artifacts before running this plugin");
+    throw new HardhatPluginError(PLUGIN_NAME, "Please generate the contract artifacts before running this plugin");
   }
 
   // Aggregate the chosen contracts in a temporary directory.
@@ -46,7 +48,7 @@ subtask(TASK_PREPARE_PACKAGE_ARTIFACTS).setAction(async function (_taskArgs: Tas
 subtask(TASK_PREPARE_PACKAGE_TYPECHAIN).setAction(async function (taskArgs: TaskArguments, { config }) {
   const pathToBindings: string = path.join(config.paths.root, config.typechain.outDir);
   if (!fsExtra.existsSync(pathToBindings)) {
-    throw new HardhatPluginError(packageJson.name, "Please generate the TypeChain bindings before running this plugin");
+    throw new HardhatPluginError(PLUGIN_NAME, "Please generate the TypeChain bindings before running this plugin");
   }
 
   // Delete all bindings that were not allowlisted.

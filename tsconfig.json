@@ -10,7 +10,7 @@
     "noImplicitAny": true,
     "outDir": "dist",
     "resolveJsonModule": true,
-    "skipLibCheck": true,
+    "skipLibCheck": false,
     "sourceMap": true,
     "strict": true,
     "target": "es5"
