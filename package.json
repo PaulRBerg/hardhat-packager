@@ -1,7 +1,7 @@
 {
   "name": "hardhat-packager",
   "description": "Hardhat plugin for preparing the contract artifacts and the TypeChain bindings for registry deployment",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": {
     "name": "Paul Razvan Berg",
     "url": "https://paulrberg.com"
@@ -18,6 +18,9 @@
   "devDependencies": {
     "@commitlint/cli": "^13.1.0",
     "@commitlint/config-conventional": "^13.1.0",
+    "@ethersproject/abi": "^5.4.0",
+    "@ethersproject/bytes": "^5.4.0",
+    "@ethersproject/providers": "^5.4.3",
     "@typechain/ethers-v5": "^7.0.1",
     "@typechain/hardhat": "^2.2.0",
     "@types/fs-extra": "^9.0.12",
@@ -30,6 +33,7 @@
     "earljs": "^0.1.10",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
+    "ethers": "^5.4.3",
     "husky": "^7.0.1",
     "lint-staged": "^11.1.1",
     "lodash": "^4.17.21",
