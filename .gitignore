@@ -2,9 +2,12 @@
 .yarn/*
 !.yarn/releases
 !.yarn/plugins
+artifacts/
 build/
+cache/
 dist/
 node_modules/
+typechain/
 
 # files
 *.env

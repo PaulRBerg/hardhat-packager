@@ -1,6 +1,8 @@
 # folders
+.yarn/
+artifacts/
 build/
-coverage/
+cache/
 dist/
-lib/
 node_modules/
+typechain/
