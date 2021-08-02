@@ -72,11 +72,11 @@ task(
     return;
   }
 
-  // Let the user know that the package is being prepared.
-  console.log(`Preparing ${config.packager.contracts.length} contracts ...`);
-
   // Run the TypeChain task first. This runs the "compile" task internally, so the contract artifacts are generated too.
   await run(TASK_TYPECHAIN);
+
+  // Let the user know that the package is being prepared.
+  console.log(`Preparing ${config.packager.contracts.length} contracts ...`);
 
   // Prepare the contract artifacts.
   await run(TASK_PREPARE_PACKAGE_ARTIFACTS);
