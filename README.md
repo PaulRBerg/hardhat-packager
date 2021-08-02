@@ -42,7 +42,7 @@ import "hardhat-packager";
 
 ## Tasks
 
-This plugin adds the _prepare:package_ task to Hardhat:
+This plugin adds the _prepare-package_ task to Hardhat:
 
 ```
 Prepares the contract artifacts and the TypeChain bindings for registry deployment
@@ -72,7 +72,7 @@ Refer to the [configuration](/#configuration) section above.
 Then, run it like this:
 
 ```sh
-yarn hardhat prepare:package
+yarn hardhat prepare-package
 ```
 
 Go look what you have in the `artifacts` and the `typechain` folders.
