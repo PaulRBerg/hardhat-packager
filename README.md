@@ -68,7 +68,7 @@ module.exports = {
 ## Usage
 
 To use this plugin you need to decide which contracts you would like to be part of the package deployed to the registry.
-Refer to the [configuration](/#configuration) section above.
+Refer to the [configuration](./README.md#configuration) section above.
 
 Then, run it like this:
 
