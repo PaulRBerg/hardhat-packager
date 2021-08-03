@@ -51,12 +51,18 @@ subtask(TASK_PREPARE_PACKAGE_TYPECHAIN).setAction(async function (taskArgs: Task
     throw new HardhatPluginError(PLUGIN_NAME, "Please generate the TypeChain bindings before running this plugin");
   }
 
+  // TypeChain generates some files that are shared across all bindings.
+  const excludedFiles: string[] = ["commons"];
+
   // Delete all bindings that were not allowlisted.
   // CAVEAT: this will delete the "factories" folder.
   const bindings: string[] = await fsExtra.readdir(pathToBindings);
   for (const binding of bindings) {
-    const contract: string = binding.replace(".d.ts", "");
-    if (!config.packager.contracts.includes(contract)) {
+    const fileName: string = binding.replace(".d.ts", "").replace(".ts", "");
+    if (excludedFiles.includes(fileName)) {
+      continue;
+    }
+    if (!config.packager.contracts.includes(fileName)) {
       const fullPath: string = path.join(pathToBindings, binding);
       await fsExtra.remove(fullPath);
     }

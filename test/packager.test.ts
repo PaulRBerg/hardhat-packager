@@ -86,6 +86,7 @@ describe("Hardhat Packager", function () {
 
           expect(fsExtra.existsSync(pathToArtifacts)).toEqual(true);
           expect(fsExtra.existsSync(pathToBindings)).toEqual(true);
+          expect(fsExtra.existsSync(path.join(pathToBindings, "commons.ts"))).toEqual(true);
 
           expect(consoleLogMock).toHaveBeenCalledWith(["Preparing 2 contracts ..."]);
           expect(consoleLogMock).toHaveBeenCalledWith([`Successfully prepared 2 contracts for registry deployment!`]);
