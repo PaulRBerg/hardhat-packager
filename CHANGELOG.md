@@ -42,6 +42,7 @@ YANKED.
 
 - First release of the plugin.
 
+[1.0.4]: https://github.com/paulrberg/hardhat-packager/releases/tag/v1.0.4
 [1.0.3]: https://github.com/paulrberg/hardhat-packager/releases/tag/v1.0.3
 [1.0.2]: https://github.com/paulrberg/hardhat-packager/releases/tag/v1.0.2
 [1.0.1]: https://github.com/paulrberg/hardhat-packager/releases/tag/v1.0.1

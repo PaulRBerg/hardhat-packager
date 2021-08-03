@@ -80,9 +80,9 @@ Go look what you have in the `artifacts` and the `typechain` folders.
 
 ### Tips
 
-- You may want to add the `artifacts/**/*.json`, `contracts/**/*.sol` and `typechain/**/*.d.ts` globs to the
+- You may want to add the `/artifacts`, `/contracts` and `/typechain` globs to the
   [files](https://docs.npmjs.com/cli/v7/configuring-npm/package-json#files) field in your `package.json` file.
-- You may want to blocklist some files, such as test contracts, which you can do with an
+- You may want to blocklist some files, such as test contracts, which you can via an
   [.npmignore](https://docs.npmjs.com/cli/v7/using-npm/developers#keeping-files-out-of-your-package) file.
 - See how the plugin is integrated in [hifi-protocol](https://github.com/hifi-finance/hifi-protocol).
 
