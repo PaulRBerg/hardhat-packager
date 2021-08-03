@@ -6,7 +6,7 @@ Hardhat plugin for preparing the contract artifacts and the TypeChain bindings f
 
 This plugin builds on top of TypeChain's [plugin](https://github.com/ethereum-ts/TypeChain/tree/master/packages/hardhat)
 to prepare your contract artifacts and TypeChain bindings for being deployed to a package registry (e.g.
-[npmjs.org](https://npmjs.org). More specifically, it deletes all artifacts and bindings that are not in an allowlist of
+[npmjs.org](https://npmjs.org)). More specifically, it deletes all artifacts and bindings that are not in an allowlist of
 contracts, minifying the folder structure in the process.
 
 ## Installation
