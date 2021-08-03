@@ -88,4 +88,4 @@ Go look what you have in the `artifacts` and the `typechain` folders.
 
 ## License
 
-The library is released under the [WTFPL License](./LICENSE.md).
+The plugin is released under the [WTFPL License](./LICENSE.md).
