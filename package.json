@@ -1,7 +1,7 @@
 {
   "name": "hardhat-packager",
   "description": "Hardhat plugin for preparing the contract artifacts and the TypeChain bindings for registry deployment",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "author": {
     "name": "Paul Razvan Berg",
     "url": "https://paulrberg.com"
@@ -46,7 +46,8 @@
     "typescript": "~4.2.4"
   },
   "files": [
-    "/dist/**/*"
+    "/dist/**/*",
+    "CHANGELOG.md"
   ],
   "homepage": "https://github.com/paulrberg/hardhat-packager#readme",
   "keywords": [
@@ -63,9 +64,9 @@
   "main": "./dist/index.js",
   "peerDependencies": {
     "@typechain/hardhat": "^2.2.0",
-    "hardhat": "^2.0.10",
+    "hardhat": "^2.5.0",
     "lodash": "^4.17.15",
-    "typechain": "^5.0.0"
+    "typechain": "^5.1.2"
   },
   "publishConfig": {
     "access": "public"
