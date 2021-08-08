@@ -84,7 +84,8 @@ Go look what you have in the `artifacts` and the `typechain` folders.
   [files](https://docs.npmjs.com/cli/v7/configuring-npm/package-json#files) field in your `package.json` file.
 - You may want to blocklist some files, such as test contracts, which you can via an
   [.npmignore](https://docs.npmjs.com/cli/v7/using-npm/developers#keeping-files-out-of-your-package) file.
-- See how the plugin is integrated in [hifi-protocol](https://github.com/hifi-finance/hifi-protocol).
+- See how the plugin is integrated in [@hifi/protocol](https://github.com/hifi-finance/hifi), and how the artifacts and
+  the bindings are used in [hifi-deployers](https://github.com/hifi-finance/hifi-deployers).
 
 ## License
 
