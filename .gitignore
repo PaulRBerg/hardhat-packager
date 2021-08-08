@@ -1,10 +1,15 @@
 # folders
+.nyc_output/
 .yarn/*
+!.yarn/patches
 !.yarn/releases
 !.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
 artifacts/
 build/
 cache/
+coverage/
 dist/
 node_modules/
 typechain/
@@ -13,6 +18,8 @@ typechain/
 *.env
 *.log
 *.tsbuildinfo
+.pnp.*
+coverage.json
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

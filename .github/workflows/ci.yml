@@ -1,5 +1,10 @@
 name: "Continuous Integration"
 
+env:
+  COVERAGE_GIT_BRANCH: "main"
+  COVERAGE_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+  COVERAGE_SERVICE_NAME: "github-actions-ci"
+
 on:
   pull_request:
     branches:
@@ -25,7 +30,13 @@ jobs:
         run: "yarn install --immutable"
 
       - name: "Lint code"
-        run: "yarn run lint"
+        run: "yarn lint"
 
-      - name: "Run tests"
-        run: "yarn run test"
+      - name: "Run tests and test coverage"
+        run: "yarn coverage"
+
+      - name: "Upload report to Coveralls"
+        uses: "coverallsapp/github-action@master"
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path-to-lcov: "./coverage/lcov.info"

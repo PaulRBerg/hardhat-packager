@@ -1,4 +1,4 @@
-# Hardhat Packager [![Styled with Prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://prettier.io) [![Commitizen Friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/) [![License: WTFPL](https://img.shields.io/badge/License-WTFPL-yellow.svg)](https://spdx.org/licenses/WTFPL.html)
+# Hardhat Packager [![Coverage Status](https://coveralls.io/repos/github/paulrberg/hardhat-packager/badge.svg?branch=main)](https://coveralls.io/github/paulrberg/hardhat-packager?branch=main) [![Styled with Prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://prettier.io) [![Commitizen Friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/) [![License: WTFPL](https://img.shields.io/badge/License-WTFPL-yellow.svg)](https://spdx.org/licenses/WTFPL.html)
 
 Hardhat plugin for preparing the contract artifacts and the TypeChain bindings for registry deployment.
 
