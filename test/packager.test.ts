@@ -11,8 +11,9 @@ import { TaskArguments } from "hardhat/types";
 import { TASK_PREPARE_PACKAGE } from "../src/constants";
 import { useEnvironment } from "./helpers";
 
-const pathToArtifacts = path.join(__dirname, "fixture-projects/hardhat-project/artifacts");
-const pathToBindings = path.join(__dirname, "fixture-projects/hardhat-project/typechain");
+const pathToArtifacts: string = path.join(__dirname, "fixture-projects/hardhat-project/artifacts");
+const pathToBindings: string = path.join(__dirname, "fixture-projects/hardhat-project/typechain");
+const pathToBindingsFactories: string = path.join(__dirname, "fixture-projects/hardhat-project/typechain/factories");
 
 describe("Hardhat Packager", function () {
   useEnvironment("hardhat-project");
@@ -61,19 +62,15 @@ describe("Hardhat Packager", function () {
       context("when the TypeChain bindings do not exist", function () {
         beforeEach(async function () {
           task(TASK_COMPILE, "Override the Hardhat compile subtask").setAction(async function (
-            taskArgs: TaskArguments,
+            taskArguments: TaskArguments,
             {},
             runSuper,
           ) {
-            await runSuper({ ...taskArgs, noTypechain: true });
+            await runSuper({ ...taskArguments, noTypechain: true });
           });
         });
 
         it("throws an error", async function () {
-          if (fsExtra.existsSync(pathToBindings)) {
-            const bindings: string[] = await fsExtra.readdir(pathToBindings);
-            console.log("it", { bindings });
-          }
           await expect(this.hre.run(TASK_PREPARE_PACKAGE)).toBeRejected(
             "Please generate the TypeChain bindings before running this plugin",
           );
@@ -81,15 +78,65 @@ describe("Hardhat Packager", function () {
       });
 
       context("when the TypeChain bindings exist", function () {
-        it("prepares the contracta artifacts and the TypeChain bindings for registry deployment", async function () {
-          await this.hre.run(TASK_PREPARE_PACKAGE);
+        context("when the TypeChain bindings factories do not exist", function () {
+          beforeEach(async function () {
+            task(TASK_COMPILE, "Override the Hardhat compile subtask").setAction(async function (
+              taskArguments: TaskArguments,
+              {},
+              runSuper,
+            ) {
+              await runSuper({ ...taskArguments, noTypechain: true });
+            });
+          });
 
-          expect(fsExtra.existsSync(pathToArtifacts)).toEqual(true);
-          expect(fsExtra.existsSync(pathToBindings)).toEqual(true);
-          expect(fsExtra.existsSync(path.join(pathToBindings, "commons.ts"))).toEqual(true);
+          it("throws an error", async function () {
+            await fsExtra.ensureDir(pathToBindings);
+            await expect(this.hre.run(TASK_PREPARE_PACKAGE)).toBeRejected(
+              "Please generate the TypeChain bindings factories before running this plugin",
+            );
+          });
+        });
 
-          expect(consoleLogMock).toHaveBeenCalledWith(["Preparing 2 contracts ..."]);
-          expect(consoleLogMock).toHaveBeenCalledWith([`Successfully prepared 2 contracts for registry deployment!`]);
+        context("when the TypeChain bindings factories exist", function () {
+          context("when the user decided not to include the TypeChain bindings factories", async function () {
+            beforeEach(async function () {
+              this.hre.config.packager.includeFactories = false;
+            });
+
+            it("prepares the contracts artifacts and the TypeChain bindings for registry deployment", async function () {
+              await this.hre.run(TASK_PREPARE_PACKAGE);
+
+              expect(fsExtra.existsSync(pathToArtifacts)).toEqual(true);
+              expect(fsExtra.existsSync(pathToBindings)).toEqual(true);
+              expect(fsExtra.existsSync(path.join(pathToBindings, "commons.ts"))).toEqual(true);
+              expect(fsExtra.existsSync(pathToBindingsFactories)).toEqual(false);
+
+              expect(consoleLogMock).toHaveBeenCalledWith(["Preparing 2 contracts ..."]);
+              expect(consoleLogMock).toHaveBeenCalledWith([
+                `Successfully prepared 2 contracts for registry deployment!`,
+              ]);
+            });
+          });
+
+          context("when the user decided to include the TypeChain bindings factories", async function () {
+            beforeEach(async function () {
+              this.hre.config.packager.includeFactories = true;
+            });
+
+            it("prepares the contracts artifacts and the TypeChain bindings for registry deployment", async function () {
+              await this.hre.run(TASK_PREPARE_PACKAGE);
+
+              expect(fsExtra.existsSync(pathToArtifacts)).toEqual(true);
+              expect(fsExtra.existsSync(pathToBindings)).toEqual(true);
+              expect(fsExtra.existsSync(path.join(pathToBindings, "commons.ts"))).toEqual(true);
+              expect(fsExtra.existsSync(pathToBindingsFactories)).toEqual(true);
+
+              expect(consoleLogMock).toHaveBeenCalledWith(["Preparing 2 contracts ..."]);
+              expect(consoleLogMock).toHaveBeenCalledWith([
+                `Successfully prepared 2 contracts for registry deployment!`,
+              ]);
+            });
+          });
         });
       });
     });

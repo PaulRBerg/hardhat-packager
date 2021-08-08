@@ -14,12 +14,14 @@ import {
   TASK_PREPARE_PACKAGE,
   TASK_PREPARE_PACKAGE_ARTIFACTS,
   TASK_PREPARE_PACKAGE_TYPECHAIN,
+  TASK_PREPARE_PACKAGE_TYPECHAIN_FACTORIES,
 } from "./constants";
 import { PackagerConfig } from "./types";
 
 extendConfig(function (config: HardhatConfig, userConfig: Readonly<HardhatUserConfig>) {
   const defaultPackagerConfig: PackagerConfig = {
     contracts: [],
+    includeFactories: true,
   };
 
   config.packager = {
@@ -45,7 +47,7 @@ subtask(TASK_PREPARE_PACKAGE_ARTIFACTS).setAction(async function (_taskArgs: Tas
   await fsExtra.move(temporaryPathToArtifacts, config.paths.artifacts);
 });
 
-subtask(TASK_PREPARE_PACKAGE_TYPECHAIN).setAction(async function (taskArgs: TaskArguments, { config }) {
+subtask(TASK_PREPARE_PACKAGE_TYPECHAIN).setAction(async function (_taskArgs: TaskArguments, { config }) {
   const pathToBindings: string = path.join(config.paths.root, config.typechain.outDir);
   if (!fsExtra.existsSync(pathToBindings)) {
     throw new HardhatPluginError(PLUGIN_NAME, "Please generate the TypeChain bindings before running this plugin");
@@ -54,8 +56,12 @@ subtask(TASK_PREPARE_PACKAGE_TYPECHAIN).setAction(async function (taskArgs: Task
   // TypeChain generates some files that are shared across all bindings.
   const excludedFiles: string[] = ["commons"];
 
+  // Preclude the factories from being deleted only if the user opted in to keep them.
+  if (config.packager.includeFactories) {
+    excludedFiles.push("factories");
+  }
+
   // Delete all bindings that were not allowlisted.
-  // CAVEAT: this will delete the "factories" folder.
   const bindings: string[] = await fsExtra.readdir(pathToBindings);
   for (const binding of bindings) {
     const fileName: string = binding.replace(".d.ts", "").replace(".ts", "");
@@ -63,8 +69,28 @@ subtask(TASK_PREPARE_PACKAGE_TYPECHAIN).setAction(async function (taskArgs: Task
       continue;
     }
     if (!config.packager.contracts.includes(fileName)) {
-      const fullPath: string = path.join(pathToBindings, binding);
-      await fsExtra.remove(fullPath);
+      const pathToBinding: string = path.join(pathToBindings, binding);
+      await fsExtra.remove(pathToBinding);
+    }
+  }
+});
+
+subtask(TASK_PREPARE_PACKAGE_TYPECHAIN_FACTORIES).setAction(async function (_taskArgs: TaskArguments, { config }) {
+  const pathToBindingsFactories: string = path.join(config.paths.root, config.typechain.outDir, "factories");
+  if (!fsExtra.existsSync(pathToBindingsFactories)) {
+    throw new HardhatPluginError(
+      PLUGIN_NAME,
+      "Please generate the TypeChain bindings factories before running this plugin",
+    );
+  }
+
+  // Delete all bindings factories that were not allowlisted.
+  const bindingFactories: string[] = await fsExtra.readdir(pathToBindingsFactories);
+  for (const bindingFactory of bindingFactories) {
+    const contract: string = path.parse(bindingFactory).name.replace("__factory", "");
+    if (!config.packager.contracts.includes(contract)) {
+      const pathToBindingFactory: string = path.join(pathToBindingsFactories, bindingFactory);
+      await fsExtra.remove(pathToBindingFactory);
     }
   }
 });
@@ -89,6 +115,11 @@ task(
 
   // Prepare the TypeChain bindings.
   await run(TASK_PREPARE_PACKAGE_TYPECHAIN);
+
+  // Prepare the TypeChain bindings factories if the user decided to include them.
+  if (config.packager.includeFactories) {
+    await run(TASK_PREPARE_PACKAGE_TYPECHAIN_FACTORIES);
+  }
 
   // Let the user know that the package has been prepared successfully.
   console.log(`Successfully prepared ${config.packager.contracts.length} contracts for registry deployment!`);
