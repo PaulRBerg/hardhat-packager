@@ -21,7 +21,7 @@ import { PackagerConfig } from "./types";
 extendConfig(function (config: HardhatConfig, userConfig: Readonly<HardhatUserConfig>) {
   const defaultPackagerConfig: PackagerConfig = {
     contracts: [],
-    includeFactories: true,
+    includeFactories: false,
   };
 
   config.packager = {

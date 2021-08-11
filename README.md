@@ -1,4 +1,4 @@
-# Hardhat Packager [![Coverage Status](https://coveralls.io/repos/github/paulrberg/hardhat-packager/badge.svg?branch=main)](https://coveralls.io/github/paulrberg/hardhat-packager?branch=main) [![Styled with Prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://prettier.io) [![Commitizen Friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/) [![License: WTFPL](https://img.shields.io/badge/License-WTFPL-yellow.svg)](https://spdx.org/licenses/WTFPL.html)
+# Hardhat Packager [![Coverage Status](https://coveralls.io/repos/github/paulrberg/hardhat-packager/badge.svg?branch=main)](https://coveralls.io/github/paulrberg/hardhat-packager?branch=main) [![Styled with Prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://prettier.io) [![Commitizen Friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/) [![license: WTFPL](https://img.shields.io/badge/license-WTFPL-yellow.svg)](https://spdx.org/licenses/WTFPL.html)
 
 Hardhat plugin for preparing the contract artifacts and the TypeChain bindings for registry deployment.
 
@@ -60,7 +60,11 @@ An example for how to set it:
 ```js
 module.exports = {
   packager: {
+    // What contracts to keep the artifacts and the bindings for.
     contracts: ["MyToken", "ERC20"],
+    // Whether to include the TypeChain factories or not.
+    // If this is enabled, you need to run the TypeChain files through the TypeScript compiler before shipping to the registry.
+    includeFactories: true,
   },
 };
 ```
