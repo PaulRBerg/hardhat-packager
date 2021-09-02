@@ -88,7 +88,7 @@
     "postpublish": "pinst --enable",
     "prepublishOnly": "pinst --disable",
     "prettier": "prettier --config ./.prettierrc --ignore-path ./.prettierignore --write \"**/*.{js,json,md,ts}\"",
-    "prettier:check": "prettier --check --config ./.prettierrc ./.prettierignore \"**/*.{js,json,md,ts}\"",
+    "prettier:check": "prettier --check --config ./.prettierrc --ignore-path ./.prettierignore \"**/*.{js,json,md,ts}\"",
     "test": "mocha --config ./.mocharc.js",
     "typecheck": "tsc --incremental false --noEmit"
   },
