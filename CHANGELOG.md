@@ -12,7 +12,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Changed
 
-- Rename `TASK_PREPARE_PACKAGE_TYPECHAIN` task.
+- Rename `SUBTASK_PREPARE_PACKAGE_TYPECHAIN` task.
 - Separate the TypeChain subtask in core bindings and factories subtasks.
 
 ## [1.0.5] - 2021-08-04
@@ -63,10 +63,10 @@ YANKED.
 
 - First release of the plugin.
 
-[1.1.0]: https://github.com/paulrberg/hardhat-packager/releases/tag/v1.1.0
-[1.0.5]: https://github.com/paulrberg/hardhat-packager/releases/tag/v1.0.5
-[1.0.4]: https://github.com/paulrberg/hardhat-packager/releases/tag/v1.0.4
-[1.0.3]: https://github.com/paulrberg/hardhat-packager/releases/tag/v1.0.3
-[1.0.2]: https://github.com/paulrberg/hardhat-packager/releases/tag/v1.0.2
-[1.0.1]: https://github.com/paulrberg/hardhat-packager/releases/tag/v1.0.1
+[1.1.0]: https://github.com/paulrberg/hardhat-packager/compare/v1.0.5...v1.1.0
+[1.0.5]: https://github.com/paulrberg/hardhat-packager/compare/v1.0.4...v1.0.5
+[1.0.4]: https://github.com/paulrberg/hardhat-packager/compare/v1.0.3...v1.0.4
+[1.0.3]: https://github.com/paulrberg/hardhat-packager/compare/v1.0.2...v1.0.3
+[1.0.2]: https://github.com/paulrberg/hardhat-packager/compare/v1.0.1...v1.0.2
+[1.0.1]: https://github.com/paulrberg/hardhat-packager/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/paulrberg/hardhat-packager/releases/tag/v1.0.0
