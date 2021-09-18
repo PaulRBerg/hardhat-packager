@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2021-09-18
+
+### Changed
+
+- Affix version of `tempy` to v1.0.1.
+- License from "WTFPL" to "Unlicense".
+- Polish README.
+- Set the `includeFactories` setting to `false` by default.
+- The `TASK_` prefix to `SUBTASK_` for subtask constant names.
+- Upgrade to `@typechain/hardhat` v2.3.0.
+- Upgrade to `hardhat` v2.6.4.
+
 ## [1.1.0] - 2021-08-09
 
 ### Added
@@ -63,6 +75,7 @@ YANKED.
 
 - First release of the plugin.
 
+[1.2.0]: https://github.com/paulrberg/hardhat-packager/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/paulrberg/hardhat-packager/compare/v1.0.5...v1.1.0
 [1.0.5]: https://github.com/paulrberg/hardhat-packager/compare/v1.0.4...v1.0.5
 [1.0.4]: https://github.com/paulrberg/hardhat-packager/compare/v1.0.3...v1.0.4
