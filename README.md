@@ -4,10 +4,10 @@ Hardhat plugin for preparing the contract artifacts and the TypeChain bindings f
 
 ## Description
 
-This plugin builds on top of TypeChain's [plugin](https://github.com/ethereum-ts/TypeChain/tree/master/packages/hardhat)
-to prepare your contract artifacts and TypeChain bindings for being deployed to a package registry (e.g.
+This plugin builds on top the [TypeChain plugin](https://github.com/ethereum-ts/TypeChain/tree/master/packages/hardhat)
+to prepare the contract artifacts and TypeChain bindings for being deployed to a package registry (e.g.
 [npmjs.org](https://npmjs.org)). More specifically, it deletes all artifacts and bindings that are not in an allowlist of
-contracts, minifying the folder structure in the process.
+contracts, minifying the directory structure in the process.
 
 ## Installation
 
@@ -74,22 +74,22 @@ module.exports = {
 To use this plugin you need to decide which contracts you would like to be part of the package deployed to the registry.
 Refer to the [configuration](./README.md#configuration) section above.
 
-Then, run it like this:
+Then run this:
 
 ```sh
 yarn hardhat prepare-package
 ```
 
-Go look what you have in the `artifacts` and the `typechain` folders.
+And go look what you got in the `artifacts` and the `typechain` directory.
 
 ### Tips
 
 - You may want to add the `/artifacts`, `/contracts` and `/typechain` globs to the
   [files](https://docs.npmjs.com/cli/v7/configuring-npm/package-json#files) field in your `package.json` file.
-- You may want to blocklist some files, such as test contracts, which you can via an
+- You may want to blocklist some files, such as test contracts. You can do this via an
   [.npmignore](https://docs.npmjs.com/cli/v7/using-npm/developers#keeping-files-out-of-your-package) file.
-- See how the plugin is integrated in [@hifi/protocol](https://github.com/hifi-finance/hifi), and how the artifacts and
-  the bindings are used in [hifi-deployers](https://github.com/hifi-finance/hifi-deployers).
+- See how the plugin is integrated in [@hifi/protocol](https://github.com/hifi-finance/hifi/tree/main/packages/protocol), and how the artifacts and
+  the bindings are used in [@hifi/deployers](https://github.com/hifi-finance/hifi/tree/main/packages/deployers).
 
 ## License
 
