@@ -49,7 +49,10 @@
     "typescript": "^4.3.5"
   },
   "files": [
-    "/dist/**/*",
+    "/dist/**/*.d.ts",
+    "/dist/**/*.d.ts.map",
+    "/dist/**/*.js",
+    "/dist/**/*.js.map",
     "CHANGELOG.md"
   ],
   "homepage": "https://github.com/paulrberg/hardhat-packager#readme",

@@ -11,10 +11,10 @@ import tempy from "tempy";
 
 import {
   PLUGIN_NAME,
+  SUBTASK_PREPARE_PACKAGE_ARTIFACTS,
+  SUBTASK_PREPARE_PACKAGE_TYPECHAIN,
+  SUBTASK_PREPARE_PACKAGE_TYPECHAIN_FACTORIES,
   TASK_PREPARE_PACKAGE,
-  TASK_PREPARE_PACKAGE_ARTIFACTS,
-  TASK_PREPARE_PACKAGE_TYPECHAIN,
-  TASK_PREPARE_PACKAGE_TYPECHAIN_FACTORIES,
 } from "./constants";
 import { PackagerConfig } from "./types";
 
@@ -30,7 +30,7 @@ extendConfig(function (config: HardhatConfig, userConfig: Readonly<HardhatUserCo
   };
 });
 
-subtask(TASK_PREPARE_PACKAGE_ARTIFACTS).setAction(async function (_taskArgs: TaskArguments, { artifacts, config }) {
+subtask(SUBTASK_PREPARE_PACKAGE_ARTIFACTS).setAction(async function (_taskArgs: TaskArguments, { artifacts, config }) {
   if (!fsExtra.existsSync(config.paths.artifacts)) {
     throw new HardhatPluginError(PLUGIN_NAME, "Please generate the contract artifacts before running this plugin");
   }
@@ -47,7 +47,7 @@ subtask(TASK_PREPARE_PACKAGE_ARTIFACTS).setAction(async function (_taskArgs: Tas
   await fsExtra.move(temporaryPathToArtifacts, config.paths.artifacts);
 });
 
-subtask(TASK_PREPARE_PACKAGE_TYPECHAIN).setAction(async function (_taskArgs: TaskArguments, { config }) {
+subtask(SUBTASK_PREPARE_PACKAGE_TYPECHAIN).setAction(async function (_taskArgs: TaskArguments, { config }) {
   const pathToBindings: string = path.join(config.paths.root, config.typechain.outDir);
   if (!fsExtra.existsSync(pathToBindings)) {
     throw new HardhatPluginError(PLUGIN_NAME, "Please generate the TypeChain bindings before running this plugin");
@@ -75,7 +75,7 @@ subtask(TASK_PREPARE_PACKAGE_TYPECHAIN).setAction(async function (_taskArgs: Tas
   }
 });
 
-subtask(TASK_PREPARE_PACKAGE_TYPECHAIN_FACTORIES).setAction(async function (_taskArgs: TaskArguments, { config }) {
+subtask(SUBTASK_PREPARE_PACKAGE_TYPECHAIN_FACTORIES).setAction(async function (_taskArgs: TaskArguments, { config }) {
   const pathToBindingsFactories: string = path.join(config.paths.root, config.typechain.outDir, "factories");
   if (!fsExtra.existsSync(pathToBindingsFactories)) {
     throw new HardhatPluginError(
@@ -111,14 +111,14 @@ task(
   console.log(`Preparing ${config.packager.contracts.length} contracts ...`);
 
   // Prepare the contract artifacts.
-  await run(TASK_PREPARE_PACKAGE_ARTIFACTS);
+  await run(SUBTASK_PREPARE_PACKAGE_ARTIFACTS);
 
   // Prepare the TypeChain bindings.
-  await run(TASK_PREPARE_PACKAGE_TYPECHAIN);
+  await run(SUBTASK_PREPARE_PACKAGE_TYPECHAIN);
 
   // Prepare the TypeChain bindings factories if the user decided to include them.
   if (config.packager.includeFactories) {
-    await run(TASK_PREPARE_PACKAGE_TYPECHAIN_FACTORIES);
+    await run(SUBTASK_PREPARE_PACKAGE_TYPECHAIN_FACTORIES);
   }
 
   // Let the user know that the package has been prepared successfully.
