@@ -5,7 +5,7 @@ import { HardhatUserConfig } from "hardhat/types";
 
 const config: HardhatUserConfig = {
   defaultNetwork: "hardhat",
-  solidity: "0.8.6",
+  solidity: "0.8.7",
   typechain: {
     outDir: "typechain",
     target: "ethers-v5",
