@@ -1,18 +1,18 @@
 # folders
-.nyc_output/
 .yarn/*
 !.yarn/patches
 !.yarn/releases
 !.yarn/plugins
 !.yarn/sdks
 !.yarn/versions
-artifacts/
-build/
-cache/
-coverage/
-dist/
-node_modules/
-typechain/
+**/.nyc_output
+**/artifacts
+**/build
+**/cache
+**/coverage
+**/dist
+**/node_modules
+**/typechain
 
 # files
 *.env
