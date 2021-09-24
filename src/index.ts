@@ -54,7 +54,7 @@ subtask(SUBTASK_PREPARE_PACKAGE_TYPECHAIN).setAction(async function (_taskArgs: 
   }
 
   // TypeChain generates some files that are shared across all bindings.
-  const excludedFiles: string[] = ["commons"];
+  const excludedFiles: string[] = ["common", "commons"];
 
   // Preclude the factories from being deleted only if the user opted in to keep them.
   if (config.packager.includeFactories) {
