@@ -1,7 +1,7 @@
 {
   "name": "hardhat-packager",
   "description": "Hardhat plugin for preparing the contract artifacts and the TypeChain bindings for registry deployment",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "author": {
     "name": "Paul Razvan Berg",
     "url": "https://paulrberg.com"
