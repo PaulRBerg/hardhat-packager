@@ -9,9 +9,9 @@ declare module "mocha" {
   }
 }
 
-export function useEnvironment(fixtureProjectName: string): void {
+export function useHardhatEnvironment(): void {
   beforeEach("Loading Hardhat environment", async function () {
-    process.chdir(path.join(__dirname, "fixture-projects", fixtureProjectName));
+    process.chdir(path.join(__dirname, "fixture-project"));
     this.hre = await import("hardhat");
   });
 

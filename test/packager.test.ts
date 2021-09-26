@@ -9,14 +9,14 @@ import { task } from "hardhat/config";
 import { TaskArguments } from "hardhat/types";
 
 import { TASK_PREPARE_PACKAGE } from "../src/constants";
-import { useEnvironment } from "./helpers";
+import { useHardhatEnvironment } from "./helpers";
 
-const pathToArtifacts: string = path.join(__dirname, "fixture-projects/hardhat-project/artifacts");
-const pathToBindings: string = path.join(__dirname, "fixture-projects/hardhat-project/typechain");
-const pathToBindingsFactories: string = path.join(__dirname, "fixture-projects/hardhat-project/typechain/factories");
+const pathToArtifacts: string = path.join(__dirname, "fixture-project/artifacts");
+const pathToBindings: string = path.join(__dirname, "fixture-project/typechain");
+const pathToBindingsFactories: string = path.join(__dirname, "fixture-project/typechain/factories");
 
 describe("Hardhat Packager", function () {
-  useEnvironment("hardhat-project");
+  useHardhatEnvironment();
 
   let originalConsoleLog: any;
   let consoleLogMock: Mock<any, any>;

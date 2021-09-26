@@ -1,5 +1,5 @@
 // We load the plugin here.
-import "../../../src";
+import "../../src";
 
 import { HardhatUserConfig } from "hardhat/types";
 
