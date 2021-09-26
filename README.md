@@ -45,9 +45,13 @@ import "hardhat-packager";
 
 This plugin adds the _prepare-package_ task to Hardhat:
 
-```
+```text
 Prepares the contract artifacts and the TypeChain bindings for registry deployment
 ```
+
+## Environment Extensions
+
+This plugin does not extend the Hardhat Runtime Environment.
 
 ## Configuration
 
@@ -63,7 +67,7 @@ module.exports = {
     // What contracts to keep the artifacts and the bindings for.
     contracts: ["MyToken", "ERC20"],
     // Whether to include the TypeChain factories or not.
-    // If this is enabled, you need to run the TypeChain files through the TypeScript compiler before shipping to the registry.
+    // If this is enabled, you need to compile the TypeChain files with the TypeScript compiler before shipping to the registry.
     includeFactories: true,
   },
 };
