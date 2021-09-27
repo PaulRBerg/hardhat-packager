@@ -26,16 +26,16 @@ jobs:
           cache: "yarn"
           node-version: "16"
 
-      - name: "Install dependencies"
+      - name: "Install the dependencies"
         run: "yarn install --immutable"
 
-      - name: "Lint code"
+      - name: "Lint the code"
         run: "yarn lint"
 
-      - name: "Run tests and test coverage"
+      - name: "Run the tests and generate coverage report"
         run: "yarn coverage"
 
-      - name: "Upload report to Coveralls"
+      - name: "Upload the report to Coveralls"
         uses: "coverallsapp/github-action@master"
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
