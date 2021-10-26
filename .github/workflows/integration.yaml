@@ -35,7 +35,7 @@ jobs:
       - name: "Run the tests and generate coverage report"
         run: "yarn coverage"
 
-      - name: "Upload the report to Coveralls"
+      - name: "Upload the coverage report to Coveralls"
         uses: "coverallsapp/github-action@master"
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
