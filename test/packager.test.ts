@@ -14,6 +14,7 @@ import { useHardhatEnvironment } from "./helpers";
 const pathToArtifacts: string = path.join(__dirname, "fixture-project/artifacts");
 const pathToBindings: string = path.join(__dirname, "fixture-project/typechain");
 const pathToBindingsFactories: string = path.join(__dirname, "fixture-project/typechain/factories");
+const pathToCommonFile: string = path.join(__dirname, "fixture-project/typechain/common.ts");
 
 describe("Hardhat Packager", function () {
   useHardhatEnvironment();
@@ -88,8 +89,8 @@ describe("Hardhat Packager", function () {
 
             expect(fsExtra.existsSync(pathToArtifacts)).toEqual(true);
             expect(fsExtra.existsSync(pathToBindings)).toEqual(true);
-            expect(fsExtra.existsSync(path.join(pathToBindings, "common.d.ts"))).toEqual(true);
             expect(fsExtra.existsSync(pathToBindingsFactories)).toEqual(false);
+            expect(fsExtra.existsSync(pathToCommonFile)).toEqual(true);
 
             expect(consoleLogMock).toHaveBeenCalledWith(["Preparing 2 contracts ..."]);
             expect(consoleLogMock).toHaveBeenCalledWith([`Successfully prepared 2 contracts for registry deployment!`]);
@@ -126,8 +127,8 @@ describe("Hardhat Packager", function () {
 
               expect(fsExtra.existsSync(pathToArtifacts)).toEqual(true);
               expect(fsExtra.existsSync(pathToBindings)).toEqual(true);
-              expect(fsExtra.existsSync(path.join(pathToBindings, "common.d.ts"))).toEqual(true);
               expect(fsExtra.existsSync(pathToBindingsFactories)).toEqual(true);
+              expect(fsExtra.existsSync(pathToCommonFile)).toEqual(true);
 
               expect(consoleLogMock).toHaveBeenCalledWith(["Preparing 2 contracts ..."]);
               expect(consoleLogMock).toHaveBeenCalledWith([
