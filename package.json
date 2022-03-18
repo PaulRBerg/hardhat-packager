@@ -22,6 +22,7 @@
     "@ethersproject/bytes": "^5.5.0",
     "@ethersproject/providers": "^5.5.3",
     "@istanbuljs/nyc-config-typescript": "^1.0.2",
+    "@trivago/prettier-plugin-sort-imports": "^3.2.0",
     "@typechain/ethers-v5": "^9.0.0",
     "@types/fs-extra": "^9.0.13",
     "@types/mocha": "^9.1.0",

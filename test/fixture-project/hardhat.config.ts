@@ -1,7 +1,7 @@
 // We load the plugin here.
-import "../../src";
-
 import { HardhatUserConfig } from "hardhat/types";
+
+import "../../src";
 
 const config: HardhatUserConfig = {
   defaultNetwork: "hardhat",

@@ -1,12 +1,9 @@
-import "./type-extensions";
-
-import path from "path";
-
 import { TASK_TYPECHAIN } from "@typechain/hardhat/dist/constants";
 import fsExtra from "fs-extra";
 import { extendConfig, subtask, task } from "hardhat/config";
 import { HardhatPluginError } from "hardhat/plugins";
 import { Artifact, HardhatConfig, HardhatUserConfig, TaskArguments } from "hardhat/types";
+import path from "path";
 import tempy from "tempy";
 
 import {
@@ -16,6 +13,7 @@ import {
   SUBTASK_PREPARE_PACKAGE_TYPECHAIN_FACTORIES,
   TASK_PREPARE_PACKAGE,
 } from "./constants";
+import "./type-extensions";
 import { PackagerConfig } from "./types";
 
 extendConfig(function (config: HardhatConfig, userConfig: Readonly<HardhatUserConfig>) {

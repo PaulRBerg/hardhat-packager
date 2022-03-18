@@ -1,12 +1,11 @@
 /* eslint-disable @typescript-eslint/no-empty-function, no-empty-pattern */
-import path from "path";
-
 import { TASK_TYPECHAIN } from "@typechain/hardhat/dist/constants";
 import { Mock, expect, mockFn } from "earljs";
 import fsExtra from "fs-extra";
 import { TASK_COMPILE } from "hardhat/builtin-tasks/task-names";
 import { task } from "hardhat/config";
 import { TaskArguments } from "hardhat/types";
+import path from "path";
 
 import { TASK_PREPARE_PACKAGE } from "../src/constants";
 import { useHardhatEnvironment } from "./helpers";
