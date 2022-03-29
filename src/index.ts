@@ -81,7 +81,6 @@ subtask(SUBTASK_PREPARE_PACKAGE_TYPECHAIN_FACTORIES).setAction(async function (_
     );
   }
 
-  // Delete all bindings factories that have not been not allowlisted.
   for await (const pathToBindingFactory of getFilesRecursively(pathToBindingsFactories)) {
     const contract: string = parse(pathToBindingFactory).name.replace("__factory", "");
     if (!config.packager.contracts.includes(contract)) {
