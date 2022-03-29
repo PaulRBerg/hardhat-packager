@@ -13,7 +13,7 @@ import {
   SUBTASK_PREPARE_PACKAGE_TYPECHAIN_FACTORIES,
   TASK_PREPARE_PACKAGE,
 } from "./constants";
-import { getFilesRecursively } from "./helpers";
+import { getEmptyDirectoriesRecursively, getFilesRecursively } from "./helpers";
 import "./type-extensions";
 import type { PackagerConfig } from "./types";
 
@@ -65,6 +65,11 @@ subtask(SUBTASK_PREPARE_PACKAGE_TYPECHAIN).setAction(async function (_taskArgs: 
       await fsExtra.remove(pathToBinding);
     }
   }
+
+  // Delete any remaining empty directories.
+  for await (const pathToEmptyBindingDirectory of getEmptyDirectoriesRecursively(pathToBindings)) {
+    await fsExtra.remove(pathToEmptyBindingDirectory);
+  }
 });
 
 subtask(SUBTASK_PREPARE_PACKAGE_TYPECHAIN_FACTORIES).setAction(async function (_taskArgs: TaskArguments, { config }) {
@@ -82,6 +87,11 @@ subtask(SUBTASK_PREPARE_PACKAGE_TYPECHAIN_FACTORIES).setAction(async function (_
     if (!config.packager.contracts.includes(contract)) {
       await fsExtra.remove(pathToBindingFactory);
     }
+  }
+
+  // Delete any remaining empty directories.
+  for await (const pathToEmptyBindingFactoryDirectory of getEmptyDirectoriesRecursively(pathToBindingsFactories)) {
+    await fsExtra.remove(pathToEmptyBindingFactoryDirectory);
   }
 });
 

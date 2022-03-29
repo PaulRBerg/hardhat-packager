@@ -93,6 +93,7 @@ describe("Hardhat Packager", function () {
             expect(fsExtra.existsSync(pathToBindings)).toEqual(true);
             expect(fsExtra.existsSync(path.join(pathToBindings, "A.ts"))).toEqual(true);
             expect(fsExtra.existsSync(path.join(pathToBindings, "lib", "C.ts"))).toEqual(true);
+            expect(fsExtra.existsSync(path.join(pathToBindings, "test"))).toEqual(false);
 
             // Factories
             expect(fsExtra.existsSync(pathToBindingsFactories)).toEqual(false);
@@ -137,11 +138,13 @@ describe("Hardhat Packager", function () {
               expect(fsExtra.existsSync(pathToBindings)).toEqual(true);
               expect(fsExtra.existsSync(path.join(pathToBindings, "A.ts"))).toEqual(true);
               expect(fsExtra.existsSync(path.join(pathToBindings, "lib", "C.ts"))).toEqual(true);
+              expect(fsExtra.existsSync(path.join(pathToBindings, "test"))).toEqual(false);
 
               // Factories
               expect(fsExtra.existsSync(pathToBindingsFactories)).toEqual(true);
               expect(fsExtra.existsSync(path.join(pathToBindingsFactories, "A__factory.ts"))).toEqual(true);
               expect(fsExtra.existsSync(path.join(pathToBindingsFactories, "lib", "C__factory.ts"))).toEqual(true);
+              expect(fsExtra.existsSync(path.join(pathToBindingsFactories, "test"))).toEqual(false);
 
               expect(consoleLogMock).toHaveBeenCalledWith(["Preparing 2 contracts ..."]);
               expect(consoleLogMock).toHaveBeenCalledWith([

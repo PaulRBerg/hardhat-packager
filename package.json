@@ -69,10 +69,10 @@
   "license": "Unlicense",
   "main": "./dist/index.js",
   "peerDependencies": {
-    "@typechain/hardhat": "4.x",
+    "@typechain/hardhat": "6.x",
     "hardhat": "2.x",
     "lodash": "4.x",
-    "typechain": "7.x"
+    "typechain": "8.x"
   },
   "publishConfig": {
     "access": "public"
