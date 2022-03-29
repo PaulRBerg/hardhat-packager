@@ -43,7 +43,7 @@ describe("Hardhat Packager", function () {
 
   context("when the list of contracts to prepare is not empty", function () {
     beforeEach(function () {
-      this.hre.config.packager.contracts = ["A", "B"];
+      this.hre.config.packager.contracts = ["A", "C"];
     });
 
     context("when the contract artifacts do not exist", function () {
@@ -87,12 +87,18 @@ describe("Hardhat Packager", function () {
             await this.hre.run(TASK_PREPARE_PACKAGE);
 
             expect(fsExtra.existsSync(pathToArtifacts)).toEqual(true);
-            expect(fsExtra.existsSync(pathToBindings)).toEqual(true);
-            expect(fsExtra.existsSync(pathToBindingsFactories)).toEqual(false);
             expect(fsExtra.existsSync(pathToCommonFile)).toEqual(true);
 
+            // Bindings
+            expect(fsExtra.existsSync(pathToBindings)).toEqual(true);
+            expect(fsExtra.existsSync(path.join(pathToBindings, "A.ts"))).toEqual(true);
+            expect(fsExtra.existsSync(path.join(pathToBindings, "lib", "C.ts"))).toEqual(true);
+
+            // Factories
+            expect(fsExtra.existsSync(pathToBindingsFactories)).toEqual(false);
+
             expect(consoleLogMock).toHaveBeenCalledWith(["Preparing 2 contracts ..."]);
-            expect(consoleLogMock).toHaveBeenCalledWith([`Successfully prepared 2 contracts for registry deployment!`]);
+            expect(consoleLogMock).toHaveBeenCalledWith(["Successfully prepared 2 contracts for registry deployment!"]);
           });
         });
 
@@ -125,13 +131,21 @@ describe("Hardhat Packager", function () {
               await this.hre.run(TASK_PREPARE_PACKAGE);
 
               expect(fsExtra.existsSync(pathToArtifacts)).toEqual(true);
-              expect(fsExtra.existsSync(pathToBindings)).toEqual(true);
-              expect(fsExtra.existsSync(pathToBindingsFactories)).toEqual(true);
               expect(fsExtra.existsSync(pathToCommonFile)).toEqual(true);
+
+              // Bindings
+              expect(fsExtra.existsSync(pathToBindings)).toEqual(true);
+              expect(fsExtra.existsSync(path.join(pathToBindings, "A.ts"))).toEqual(true);
+              expect(fsExtra.existsSync(path.join(pathToBindings, "lib", "C.ts"))).toEqual(true);
+
+              // Factories
+              expect(fsExtra.existsSync(pathToBindingsFactories)).toEqual(true);
+              expect(fsExtra.existsSync(path.join(pathToBindingsFactories, "A__factory.ts"))).toEqual(true);
+              expect(fsExtra.existsSync(path.join(pathToBindingsFactories, "lib", "C__factory.ts"))).toEqual(true);
 
               expect(consoleLogMock).toHaveBeenCalledWith(["Preparing 2 contracts ..."]);
               expect(consoleLogMock).toHaveBeenCalledWith([
-                `Successfully prepared 2 contracts for registry deployment!`,
+                "Successfully prepared 2 contracts for registry deployment!",
               ]);
             });
           });

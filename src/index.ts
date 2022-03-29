@@ -3,7 +3,7 @@ import fsExtra from "fs-extra";
 import { extendConfig, subtask, task } from "hardhat/config";
 import { HardhatPluginError } from "hardhat/plugins";
 import { Artifact, HardhatConfig, HardhatUserConfig, TaskArguments } from "hardhat/types";
-import path from "path";
+import { basename, extname, join, parse } from "path";
 import tempy from "tempy";
 
 import {
@@ -13,8 +13,9 @@ import {
   SUBTASK_PREPARE_PACKAGE_TYPECHAIN_FACTORIES,
   TASK_PREPARE_PACKAGE,
 } from "./constants";
+import { getFilesRecursively } from "./helpers";
 import "./type-extensions";
-import { PackagerConfig } from "./types";
+import type { PackagerConfig } from "./types";
 
 extendConfig(function (config: HardhatConfig, userConfig: Readonly<HardhatUserConfig>) {
   const defaultPackagerConfig: PackagerConfig = {
@@ -37,7 +38,7 @@ subtask(SUBTASK_PREPARE_PACKAGE_ARTIFACTS).setAction(async function (_taskArgs: 
   const temporaryPathToArtifacts: string = tempy.directory();
   for (const contract of config.packager.contracts) {
     const artifact: Artifact = await artifacts.readArtifact(contract);
-    await fsExtra.writeJson(path.join(temporaryPathToArtifacts, contract + ".json"), artifact, { spaces: 2 });
+    await fsExtra.writeJson(join(temporaryPathToArtifacts, contract + ".json"), artifact, { spaces: 2 });
   }
 
   // Replace the previous artifacts directory.
@@ -46,7 +47,7 @@ subtask(SUBTASK_PREPARE_PACKAGE_ARTIFACTS).setAction(async function (_taskArgs: 
 });
 
 subtask(SUBTASK_PREPARE_PACKAGE_TYPECHAIN).setAction(async function (_taskArgs: TaskArguments, { config }) {
-  const pathToBindings: string = path.join(config.paths.root, config.typechain.outDir);
+  const pathToBindings: string = join(config.paths.root, config.typechain.outDir);
   if (!fsExtra.existsSync(pathToBindings)) {
     throw new HardhatPluginError(PLUGIN_NAME, "Please generate the TypeChain bindings before running this plugin");
   }
@@ -54,27 +55,20 @@ subtask(SUBTASK_PREPARE_PACKAGE_TYPECHAIN).setAction(async function (_taskArgs: 
   // TypeChain generates some files that are shared across all bindings.
   const excludedFiles: string[] = ["common"];
 
-  // Preclude the factories from being deleted only if the user opted in to keep them.
-  if (config.packager.includeFactories) {
-    excludedFiles.push("factories");
-  }
-
-  // Delete all bindings that were not allowlisted.
-  const bindings: string[] = await fsExtra.readdir(pathToBindings);
-  for (const binding of bindings) {
-    const fileName: string = binding.replace(".d.ts", "").replace(".ts", "");
+  // Delete all bindings that have not been allowlisted.
+  for await (const pathToBinding of getFilesRecursively(pathToBindings)) {
+    const fileName: string = basename(pathToBinding, extname(pathToBinding));
     if (excludedFiles.includes(fileName)) {
       continue;
     }
     if (!config.packager.contracts.includes(fileName)) {
-      const pathToBinding: string = path.join(pathToBindings, binding);
       await fsExtra.remove(pathToBinding);
     }
   }
 });
 
 subtask(SUBTASK_PREPARE_PACKAGE_TYPECHAIN_FACTORIES).setAction(async function (_taskArgs: TaskArguments, { config }) {
-  const pathToBindingsFactories: string = path.join(config.paths.root, config.typechain.outDir, "factories");
+  const pathToBindingsFactories: string = join(config.paths.root, config.typechain.outDir, "factories");
   if (!fsExtra.existsSync(pathToBindingsFactories)) {
     throw new HardhatPluginError(
       PLUGIN_NAME,
@@ -82,12 +76,10 @@ subtask(SUBTASK_PREPARE_PACKAGE_TYPECHAIN_FACTORIES).setAction(async function (_
     );
   }
 
-  // Delete all bindings factories that were not allowlisted.
-  const bindingFactories: string[] = await fsExtra.readdir(pathToBindingsFactories);
-  for (const bindingFactory of bindingFactories) {
-    const contract: string = path.parse(bindingFactory).name.replace("__factory", "");
+  // Delete all bindings factories that have not been not allowlisted.
+  for await (const pathToBindingFactory of getFilesRecursively(pathToBindingsFactories)) {
+    const contract: string = parse(pathToBindingFactory).name.replace("__factory", "");
     if (!config.packager.contracts.includes(contract)) {
-      const pathToBindingFactory: string = path.join(pathToBindingsFactories, bindingFactory);
       await fsExtra.remove(pathToBindingFactory);
     }
   }
@@ -111,13 +103,19 @@ task(
   // Prepare the contract artifacts.
   await run(SUBTASK_PREPARE_PACKAGE_ARTIFACTS);
 
-  // Prepare the TypeChain bindings.
-  await run(SUBTASK_PREPARE_PACKAGE_TYPECHAIN);
-
   // Prepare the TypeChain bindings factories if the user decided to include them.
+  // This task is run first so we don't have to parse the factories twice.
   if (config.packager.includeFactories) {
     await run(SUBTASK_PREPARE_PACKAGE_TYPECHAIN_FACTORIES);
   }
+  // Or otherwise remove them.
+  else {
+    const pathToBindingsFactories: string = join(config.paths.root, config.typechain.outDir, "factories");
+    await fsExtra.remove(pathToBindingsFactories);
+  }
+
+  // Prepare the TypeChain bindings.
+  await run(SUBTASK_PREPARE_PACKAGE_TYPECHAIN);
 
   // Let the user know that the package has been prepared successfully.
   console.log(`Successfully prepared ${config.packager.contracts.length} contracts for registry deployment!`);
