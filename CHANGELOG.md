@@ -9,102 +9,102 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Fixed
 
-- Handle empty directories two or more levels deep.
+- Handle empty directories two or more levels deep (@paulrberg)
 
 ## [1.4.0] - 2022-03-29
 
 ### Changed
 
-- Bump version of `@typechain/hardhat`, `hardhat` and `typechain` peer dependencies.
-- Directory tree in generated types now reflects the directory tree in the contracts inputs.
-- Upgrade to `@typechain/hardhat` v6.0.0.
-- Upgrade to `hardhat` v2.9.2.
-- Upgrade to `typechain` v8.0.0.
+- Bump version of `@typechain/hardhat`, `hardhat` and `typechain` peer dependencies (@paulrberg)
+- Change directory tree in generated types now reflects the directory tree in the contracts inputs (@paulrberg)
+- Upgrade to `@typechain/hardhat` v6.0.0 (@paulrberg)
+- Upgrade to `hardhat` v2.9.2 (@paulrberg)
+- Upgrade to `typechain` v8.0.0 (@paulrberg)
 
 ## [1.3.0] - 2022-02-17
 
 ### Changed
 
-- Bump version of `@typechain/hardhat`, `hardhat` and `typechain` peer dependencies.
-- Upgrade to `@typechain/hardhat` v4.0.0.
-- Upgrade to `hardhat` v2.8.4.
+- Bump version of `@typechain/hardhat`, `hardhat` and `typechain` peer dependencies ([#12](https://github.com/paulrberg/hardhat-packager/issues/12)) (@paulrberg)
+- Upgrade to `@typechain/hardhat` v4.0.0 (@paulrberg)
+- Upgrade to `hardhat` v2.8.4 (@paulrberg)
 
 ## [1.2.1] - 2021-09-23
 
 ### Fixed
 
-- Exclude "common" file in TypeChain subtask.
+- Exclude the "common" file in TypeChain subtask ([#11](https://github.com/paulrberg/hardhat-packager/issues/11)) (@paulrberg)
 
 ## [1.2.0] - 2021-09-18
 
 ### Changed
 
-- Affix version of `tempy` to v1.0.1.
-- License from "WTFPL" to "Unlicense".
-- Polish README.
-- Set the `includeFactories` setting to `false` by default.
-- The `TASK_` prefix to `SUBTASK_` for subtask constant names.
-- Upgrade to `@typechain/hardhat` v2.3.0.
-- Upgrade to `hardhat` v2.6.4.
+- Affix version of `tempy` to v1.0.1 (@paulrberg)
+- Change license from "WTFPL" to "Unlicense" (@paulrberg)
+- Change the `TASK_` prefix to `SUBTASK_` for subtask constant names (@paulrberg)
+- Polish README (@paulrberg)
+- Set the `includeFactories` setting to `false` by default (@paulrberg)
+- Upgrade to `@typechain/hardhat` v2.3.0 (@paulrberg)
+- Upgrade to `hardhat` v2.6.4 (@paulrberg)
 
 ## [1.1.0] - 2021-08-09
 
 ### Added
 
-- Allow users to include the TypeChain factories in the output.
+- Allow users to include the TypeChain factories in the output (@paulrberg)
 
 ### Changed
 
-- Rename `SUBTASK_PREPARE_PACKAGE_TYPECHAIN` task.
-- Separate the TypeChain subtask in core bindings and factories subtasks.
+- Rename `SUBTASK_PREPARE_PACKAGE_TYPECHAIN` task (@paulrberg)
+- Separate the TypeChain subtask in core bindings and factories subtasks (@paulrberg)
 
 ## [1.0.5] - 2021-08-04
 
 ### Added
 
-- Include the `CHANGELOG.md` file in package.
+- Include the `CHANGELOG.md` file in package (@paulrberg)
 
 ### Fixed
 
-- Bump version of `hardhat` and `typechain` peer dependencies.
+- Bump version of `hardhat` and `typechain` peer dependencies (@paulrberg)
 
 ## [1.0.4] - 2021-08-03
 
-### Changed
+### Fixed
 
-- Fix typos in README.
+- Fix typos in README (@paulrberg)
 
 ### Fixed
 
-- Do not delete the TypeChain `common.ts` file.
+- Prevent the TypeChain `common.ts` file from being deleted (@paulrberg)
 
 ## [1.0.3] - 2021-08-02
 
 ### Changed
 
-- The order of console logged messages.
+- Change the order of messages logged in the console (@paulrberg)
 
 ## [1.0.2] - 2021-08-02
 
 ### Added
 
-- New fields in `package.json`: bugs, keywords, homepage and repository.
-- Peer dependencies required by `@typechain/ethers-v5`.
+- Add new fields in `package.json`: bugs, keywords, homepage and repository (@paulrberg)
+- Add peer dependencies sa required by `@typechain/ethers-v5` (@paulrberg)
 
 ### Fixed
 
-- Name of task in `README.md`.
-- Path to types in `package.json`.
+- Fix name of task in `README.md` (@paulrberg)
+- Fix path to types in `package.json` (@paulrberg)
 
 ## [1.0.1] - 2021-08-02
 
-YANKED.
+_This release was unpublished from npm_
 
 ## [1.0.0] - 2021-08-02
 
 ### Added
 
-- First release of the plugin.
+- First release of the plugin (@paulrberg)
 
 [1.4.1]: https://github.com/paulrberg/hardhat-packager/compare/v1.4.0...v1.4.1
 [1.4.0]: https://github.com/paulrberg/hardhat-packager/compare/v1.3.0...v1.4.0
