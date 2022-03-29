@@ -5144,10 +5144,10 @@ fsevents@~2.1.1:
     typechain: ^8.0.0
     typescript: ^4.5.5
   peerDependencies:
-    "@typechain/hardhat": 4.x
+    "@typechain/hardhat": 6.x
     hardhat: 2.x
     lodash: 4.x
-    typechain: 7.x
+    typechain: 8.x
   languageName: unknown
   linkType: soft
 
