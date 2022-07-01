@@ -97,4 +97,4 @@ And go look what you got in the `artifacts` and the `typechain` directory.
 
 ## License
 
-[Unlicense](./LICENSE.md) © Paul Razvan Berg
+[Unlicense](./LICENSE.md)
