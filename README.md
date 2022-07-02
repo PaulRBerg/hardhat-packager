@@ -1,4 +1,4 @@
-# Hardhat Packager [![Coverage Status](https://coveralls.io/repos/github/paulrberg/hardhat-packager/badge.svg?branch=main)](https://coveralls.io/github/paulrberg/hardhat-packager?branch=main) [![Styled with Prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://prettier.io) [![license: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](https://unlicense.org/)
+# Hardhat Packager ![Continuous Integration](https://github.com/paulrberg/hardhat-packager/actions/workflows/integration.yml/badge.svg) [![Coverage Status](https://coveralls.io/repos/github/paulrberg/hardhat-packager/badge.svg?branch=main)](https://coveralls.io/github/paulrberg/hardhat-packager?branch=main) [![Styled with Prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://prettier.io) [![License: Unlicense](https://img.shields.io/badge/License-Unlicense-blue.svg)](https://unlicense.org/)
 
 Hardhat plugin for preparing the contract artifacts and the TypeChain bindings for registry deployment.
 
