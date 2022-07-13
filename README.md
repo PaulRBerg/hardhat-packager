@@ -1,7 +1,7 @@
 # Hardhat Packager [![GitHub Actions][gha-badge]][gha] [![Coverage Status][coveralls-badge]][coveralls] [![Styled with Prettier][prettier-badge]][prettier] [![License: Unlicense][license-badge]][license]
 
 [gha]: https://github.com/paulrberg/hardhat-packager/actions
-[gha-badge]: https://github.com/paulrberg/hardhat-packager/actions/workflows/integration.yml/badge.svg
+[gha-badge]: https://github.com/paulrberg/hardhat-packager/actions/workflows/ci.yml/badge.svg
 [coveralls]: https://coveralls.io/github/paulrberg/hardhat-packager
 [coveralls-badge]: https://coveralls.io/repos/github/paulrberg/hardhat-packager/badge.svg?branch=main
 [prettier]: https://prettier.io
