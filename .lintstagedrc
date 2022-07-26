@@ -1,5 +1,5 @@
 {
-  "*.{js,json,md,ts,yaml,yml}": [
+  "*.{js,json,md,ts,yml}": [
     "prettier --config ./.prettierrc.yml --write"
   ]
 }

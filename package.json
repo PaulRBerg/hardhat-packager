@@ -66,7 +66,7 @@
     "typechain",
     "typescript"
   ],
-  "license": "Unlicense",
+  "license": "MIT",
   "main": "./dist/index.js",
   "peerDependencies": {
     "@typechain/hardhat": "6.x",
@@ -82,18 +82,18 @@
     "url": "https://github.com/paulrberg/hardhat-packager"
   },
   "scripts": {
-    "build": "tsc --project ./tsconfig.prod.json",
+    "build": "tsc --project \"./tsconfig.prod.json",
     "clean": "shx rm -rf ./.nyc_output ./coverage ./dist ./coverage.json ./tsconfig.prod.tsbuildinfo",
     "coverage": "yarn nyc --nycrc-path ./.nycrc.yml mocha",
     "lint": "yarn lint:ts && yarn prettier:check && yarn typecheck",
-    "lint:ts": "eslint --config ./.eslintrc.yml --ignore-path ./.eslintignore --ext .js,.ts .",
+    "lint:ts": "eslint --config \"./.eslintrc.yml\" --ignore-path \"./.eslintignore\" --ext .js,.ts .",
     "postinstall": "husky install",
     "postpublish": "pinst --enable",
     "prepack": "yarn build",
     "prepublishOnly": "pinst --disable",
-    "prettier": "prettier --config ./.prettierrc.yml --ignore-path ./.prettierignore --write \"**/*.{js,json,md,ts}\"",
-    "prettier:check": "prettier --check --config ./.prettierrc.yml --ignore-path ./.prettierignore \"**/*.{js,json,md,ts}\"",
-    "test": "mocha --config ./.mocharc.yml",
+    "prettier": "prettier --config \"./.prettierrc.yml\" --ignore-path \"./.prettierignore\" --write \"**/*.{js,json,md,ts,yml}\"",
+    "prettier:check": "prettier --check --config \"./.prettierrc.yml\" --ignore-path \"./.prettierignore\" \"**/*.{js,json,md,ts,yml}\"",
+    "test": "mocha --config \"./.mocharc.yml\"",
     "typecheck": "tsc --incremental false --noEmit"
   },
   "types": "./dist/index.d.ts"
