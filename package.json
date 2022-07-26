@@ -1,7 +1,7 @@
 {
   "name": "hardhat-packager",
   "description": "Hardhat plugin for preparing the contract artifacts and the TypeChain bindings for registry deployment",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "author": {
     "name": "Paul Razvan Berg",
     "url": "https://github.com/paulrberg"
@@ -83,7 +83,7 @@
     "url": "https://github.com/paulrberg/hardhat-packager"
   },
   "scripts": {
-    "build": "tsc --project \"./tsconfig.prod.json",
+    "build": "tsc --project \"./tsconfig.prod.json\"",
     "clean": "shx rm -rf ./.nyc_output ./coverage ./dist ./coverage.json ./tsconfig.prod.tsbuildinfo",
     "coverage": "yarn nyc --nycrc-path ./.nycrc.yml mocha",
     "lint": "yarn lint:ts && yarn prettier:check && yarn typecheck",

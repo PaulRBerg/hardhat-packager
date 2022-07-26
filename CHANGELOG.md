@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Common Changelog](https://common-changelog.org/), and this project adheres to [Semantic
 Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.2] - 2022-07-26
+
+### Changed
+
+- Adhere to Common Changelog in `CHANGELOG.md` (@paulrberg)
+- Change license from "Unlicense" to "MIT" (@paulrberg)
+
 ## [1.4.1] - 2022-03-29
 
 ### Fixed
