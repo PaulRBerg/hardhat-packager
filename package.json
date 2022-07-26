@@ -68,6 +68,7 @@
   ],
   "license": "MIT",
   "main": "./dist/index.js",
+  "packageManager": "yarn@3.2.2",
   "peerDependencies": {
     "@typechain/hardhat": "6.x",
     "hardhat": "2.x",
