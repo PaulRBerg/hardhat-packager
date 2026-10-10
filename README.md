@@ -9,6 +9,10 @@
 [license]: https://opensource.org/licenses/MIT
 [license-badge]: https://img.shields.io/badge/License-MIT-blue.svg
 
+> [!WARNING]
+>
+> This project is deprecated and no longer maintained. The repository is archived and read-only.
+
 Hardhat plugin for preparing the contract artifacts and the TypeChain bindings for registry deployment.
 
 ## Description
